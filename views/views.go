@@ -14,7 +14,7 @@ var (
 
 func NewView(layout string, files ...string) *View {
 	addTemplatePath(files)
-	addTemplatePath(files)
+	addTemplateExt(files)
 	files = append(files, layoutsFiles()...)
 	t, err := template.ParseFiles(files...)
 	if err != nil {

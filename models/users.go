@@ -2,6 +2,7 @@ package models
 
 import (
 	"errors"
+	"fmt"
 	"log"
 	"os"
 	"time"
@@ -35,9 +36,20 @@ func NewUserService(connectInfo string) (*UserService, error) {
 	}, nil
 }
 
-func (us *UserService) DestructiveReset() {
-	us.db.Migrator().DropTable(&User{})
-	us.db.AutoMigrate(&User{})
+func (us *UserService) DestructiveReset() error {
+
+	if err := us.db.Migrator().DropTable(&User{}); err != nil {
+		return err
+	}
+	return us.AutoMigrate()
+}
+
+func (us *UserService) AutoMigrate() error {
+
+	if err := us.db.AutoMigrate(&User{}); err != nil {
+		return err
+	}
+	return nil
 }
 
 type UserService struct {
@@ -68,7 +80,11 @@ func first(db *gorm.DB, user *User) error {
 }
 
 func (us *UserService) Create(user *User) error {
-	return us.db.Create(user).Error
+	if err := us.db.Create(user).Error; err != nil {
+		fmt.Println("Debug:error in the create statement")
+		return err
+	}
+	return nil
 }
 
 func (us *UserService) Update(user *User) error {
