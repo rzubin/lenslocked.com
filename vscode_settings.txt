@@ -1,0 +1,41 @@
+{
+    "workbench.colorTheme": "Ayu Dark",
+    "editor.renderWhitespace": "none",
+    "breadcrumbs.enabled": false,
+    "editor.minimap.enabled": false,
+    "workbench.startupEditor": "newUntitledFile",
+    "editor.renderControlCharacters": false,
+    "go.autocompleteUnimportedPackages": true,
+    "go.formatTool": "goimports",
+    "go.useLanguageServer": true,
+    "[go]": {
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true,
+        },
+        // Optional: Disable snippets, as they conflict with completion ranking.
+        "editor.snippetSuggestions": "none",
+        "editor.suggest.snippetsPreventQuickSuggestions": false,
+    },
+    "[go.mod]": {
+        "editor.formatOnSave": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true,
+        },
+    },
+    "gopls": {
+        "usePlaceholders": false,    // add parameter placeholders when completing a function
+        "completeUnimported": true, // autocomplete unimported packages
+        "deepCompletion": true,    // enable deep completion
+        // If true, enable additional analyses with staticcheck.
+        // Warning: This will significantly increase memory usage.
+        "staticcheck": false,
+
+    },
+    "files.associations": {
+        "*.gohtml": "html"
+    },
+    "editor.detectIndentation": false,
+    "editor.tabSize": 2,
+    "go.gopath": "",
+}
